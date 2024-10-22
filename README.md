@@ -6,10 +6,27 @@ Same sample scripts for different AI Services, written in bash or powershell.
 
 ### Describe Image (gpt-4o-mini with vision)
 
-[multi-modal/descripte-image.sh](multi-modal/descripte-image.sh)
+[multi-modal/describe-image.sh](multi-modal/describe-image.sh)
 
 ```bash
-bash pic.jpg 'What is in this image? Give a Description and a list of tags.'
+bash multi-modal/describe-image.sh pic.jpg 'What is in this image? Give a Description and a list of tags.'
+```
+
+```text
+### Description
+The image captures a scene of a young child and an adult walking along a path in a residential area. The child, wearing a purple jacket and a pink hat, appears to be joyfully posing or dancing while holding a small decorated stick. The adult, who is further back on the path, is wearing a dark coat and seems to be looking at the child, possibly smiling or engaging with her. The background features houses and greenery typical of a neighborhood setting.
+
+### Tags
+- Child
+- Adult
+- Walking
+- Residential area
+- Joyful
+- Nature
+- Family
+- Pathway
+- Outdoor activity
+- Smiling
 ```
 
 ### Transcript Audio (gpt-4o-audio-preview-2024-10-01)
