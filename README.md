@@ -4,6 +4,14 @@ Same sample scripts for different AI Services, written in bash or powershell.
 
 ## Multi-Modal
 
+### gpt-4o-mini with vision
+
+[multi-modal/descripte-image.sh](multi-modal/descripte-image.sh)
+
+```bash
+bash pic.jpg 'What is in this image?'
+```
+
 ### gpt-4o-audio-preview-2024-10-01
 
 [multi-modal/transcript-gpt-4o-audio-preview.sh](multi-modal/transcript-gpt-4o-audio-preview.sh)
