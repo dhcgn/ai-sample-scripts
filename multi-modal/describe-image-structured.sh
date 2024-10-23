@@ -20,8 +20,8 @@ done
 
 # Function to display usage information
 usage() {
-    echo "Usage: $0 <path_to_image> <prompt>"
-    echo "Example: $0 /path/to/image.jpg 'What is in this image?'"
+    echo "Usage: $0 <path_to_image>"
+    echo "Example: $0 /path/to/image.jpg"
     echo "Note: Image must be 1024x1024 pixels or smaller"
     exit 1
 }
@@ -35,13 +35,13 @@ cleanup() {
 trap cleanup EXIT
 
 # Check if the correct number of arguments is provided
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 1 ]; then
     usage
 fi
 
 # Assign arguments to variables
 IMAGE_FILE=$1
-PROMPT=$2
+PROMPT="What is in this image? Give a Description and a list of tags"
 
 # Validate the file type (case insensitive)
 if [[ ! "${IMAGE_FILE,,}" =~ \.(jpg|jpeg|png)$ ]]; then
