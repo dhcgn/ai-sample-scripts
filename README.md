@@ -106,6 +106,18 @@ bash multi-modal/transcript-gpt-4o-audio-preview.sh file.mp3 "Write me back the 
 bash transcript/whisper.sh file.mp3 "Medical Interview" de
 ```
 
+### Text-to-Speech
+
+[text-to-speech/text-to-speech.sh](text-to-speech/text-to-speech.sh)
+
+```bash
+bash text-to-speech/text-to-speech.sh "Hallo! mein Name ist Franz."
+```
+
+```text
+Speech file saved to: /home/user/ai-sample-acripts/speech_20241023_122002.mp3
+```
+
 ## Tools
 
 ### ffmpeg
