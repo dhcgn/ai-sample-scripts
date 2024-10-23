@@ -43,8 +43,8 @@ fi
 IMAGE_FILE=$1
 PROMPT=$2
 
-# Validate the file type
-if [[ ! "$IMAGE_FILE" =~ \.(jpg|jpeg|png)$ ]]; then
+# Validate the file type (case insensitive)
+if [[ ! "${IMAGE_FILE,,}" =~ \.(jpg|jpeg|png)$ ]]; then
     echo "Error: The image file must be a jpg, jpeg, or png file." >&2
     usage
 fi
@@ -61,9 +61,11 @@ width=$(echo "$dimensions" | cut -d'x' -f1)
 height=$(echo "$dimensions" | cut -d'x' -f2)
 
 if [ "$width" -gt 1024 ] || [ "$height" -gt 1024 ]; then
-    echo "Error: Image dimensions ($dimensions) exceed maximum allowed size of 1024x1024." >&2
-    echo "Please resize your image and try again." >&2
-    exit 1
+    echo "Image dimensions ($dimensions) exceed maximum allowed size of 1024x1024. Resizing image..."
+    temp_image=$(mktemp --suffix=.jpg)
+    convert "$IMAGE_FILE" -resize 1024x1024\> "$temp_image"
+    IMAGE_FILE="$temp_image"
+    trap 'rm -f "$temp_image"' EXIT
 fi
 
 # Your script logic here

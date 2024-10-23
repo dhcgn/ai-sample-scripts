@@ -9,24 +9,31 @@ Same sample scripts for different AI Services, written in bash or powershell.
 [multi-modal/describe-image.sh](multi-modal/describe-image.sh)
 
 ```bash
-bash multi-modal/describe-image.sh pic.jpg 'What is in this image? Give a Description and a list of tags.'
+export OPENAI_API_KEY=$(cat .secrets/OPENAI_API_KEY.txt)
+bash download_test_images.sh
+bash multi-modal/describe-image.sh test-data/images/n01494475_hammerhead.JPEG 'What is in this image? Give a Description and a list of tags.'
 ```
 
 ```text
-### Description
-The image captures a scene of a young child and an adult walking along a path in a residential area. The child, wearing a purple jacket and a pink hat, appears to be joyfully posing or dancing while holding a small decorated stick. The adult, who is further back on the path, is wearing a dark coat and seems to be looking at the child, possibly smiling or engaging with her. The background features houses and greenery typical of a neighborhood setting.
+The image features a man standing on a sandy beach holding two fish in his hands. He is shirtless, wearing floral swim shorts and flip-flops. The background includes a view of the ocean under a clear blue sky, with some distant land visible on the horizon.
 
-### Tags
-- Child
-- Adult
-- Walking
-- Residential area
-- Joyful
-- Nature
-- Family
-- Pathway
-- Outdoor activity
-- Smiling
+### Description:
+- Setting: Beach environment
+- Subject: A man holding two fish
+- Clothing: Floral swim shorts, flip-flops, no shirt
+- Mood: Casual and relaxed
+
+### Tags:
+- Beach
+- Fishing
+- Outdoors
+- Summer
+- Catch of the day
+- Marine life
+- Recreation
+- Sports
+- Ocean
+- Coastal
 ```
 
 ### Transcript Audio (gpt-4o-audio-preview-2024-10-01)
