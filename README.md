@@ -118,6 +118,54 @@ bash text-to-speech/text-to-speech.sh "Hallo! mein Name ist Franz."
 Speech file saved to: /home/user/ai-sample-acripts/speech_20241023_122002.mp3
 ```
 
+### Moderation
+
+[moderation/moderation.sh](moderation/moderation.sh)
+
+```bash
+bash moderation/moderation.sh "Your are dump"
+```
+
+```json
+{
+  "id": "modr-a75d9ae4e63e1fcdad3192f54381bf44",
+  "model": "omni-moderation-latest",
+  "results": [
+    {
+      "flagged": true,
+      "categories": {
+        "harassment": true,
+        "harassment/threatening": false,
+        "sexual": false,
+        "hate": false,
+        "hate/threatening": false,
+        "illicit": false,
+        "illicit/violent": false,
+        "self-harm/intent": false,
+        "self-harm/instructions": false,
+        "self-harm": false,
+        "sexual/minors": false,
+        "violence": false,
+        "violence/graphic": false
+      },
+      "category_scores": {
+        "harassment": 0.721970864775024,
+        "harassment/threatening": 0.0008189714985138275,
+        "sexual": 0.00014325365947100792,
+        "hate": 0.00010322310367548195,
+        "hate/threatening": 0.0000015936620247162786,
+        "illicit": 0.0037773915102819354,
+        "illicit/violent": 0.000008092757566536092,
+        "self-harm/intent": 0.00022735757340977802,
+        "self-harm/instructions": 0.00022788290577331583,
+        "self-harm": 0.0005064509108778008,
+        "sexual/minors": 0.0000027535691114583474,
+        "violence": 0.0005600758955536546,
+        "violence/graphic": 0.000007484622751061123
+      },
+      ...
+```
+
 ## Tools
 
 ### ffmpeg
