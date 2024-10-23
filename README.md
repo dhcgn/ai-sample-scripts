@@ -35,6 +35,60 @@ The image features a man standing on a sandy beach holding two fish in his hands
 - Ocean
 - Coastal
 ```
+### Describe Image with structured output (gpt-4o-mini with vision)
+
+[multi-modal/describe-image-structured.sh](multi-modal/describe-image-structured.sh)
+
+```bash
+bash multi-modal/describe-image-structured.sh test-data/images/n01494475_hammerhead.JPEG 
+```
+
+```json
+{
+  "tags": [
+    {
+      "tag": "man",
+      "precision": 0.99
+    },
+    {
+      "tag": "beach",
+      "precision": 0.95
+    },
+    {
+      "tag": "sand",
+      "precision": 0.95
+    },
+    {
+      "tag": "ocean",
+      "precision": 0.95
+    },
+    {
+      "tag": "fish",
+      "precision": 0.98
+    },
+    {
+      "tag": "holding",
+      "precision": 0.97
+    },
+    {
+      "tag": "shorts",
+      "precision": 0.92
+    },
+    {
+      "tag": "sunglasses",
+      "precision": 0.88
+    },
+    {
+      "tag": "hat",
+      "precision": 0.90
+    },
+    {
+      "tag": "daytime",
+      "precision": 0.94
+    }
+  ]
+}
+```
 
 ### Transcript Audio (gpt-4o-audio-preview-2024-10-01)
 

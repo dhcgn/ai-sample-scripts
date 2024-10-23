@@ -41,7 +41,7 @@ fi
 
 # Assign arguments to variables
 IMAGE_FILE=$1
-PROMPT="What is in this image? Give a Description and a list of tags"
+PROMPT="Describe the content of this image in detail. Provide a list of tags with their respective precision values."
 
 # Validate the file type (case insensitive)
 if [[ ! "${IMAGE_FILE,,}" =~ \.(jpg|jpeg|png)$ ]]; then
@@ -110,7 +110,13 @@ cat > "$TEMP_JSON_FILE" << EOF
                     "tags": {
                         "type": "array",
                         "items": {
-                            "type": "string"
+                            "type": "object",
+                            "properties": {
+                                "tag": { "type": "string" },
+                                "precision": { "type": "number" }
+                            },
+                            "required": ["tag", "precision"],
+                            "additionalProperties": false
                         }
                     }
                 },
@@ -142,4 +148,4 @@ echo "$response" > "logging/$timestamp.response.json"
 echo "$TEMP_JSON_FILE" > "logging/$timestamp.request.json"
 
 # Print the formatted output to the console
-echo "$response" | jq -r '.choices[0].message.content'
+echo "$response" | jq -r '.choices[0].message.content' | jq .
