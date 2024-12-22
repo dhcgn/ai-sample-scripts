@@ -166,6 +166,27 @@ bash moderation/moderation.sh "Your are dump"
       ...
 ```
 
+### PDF to Text with Visuals
+
+[pdf/pdf-to-text-with-visuals.sh](pdf/pdf-to-text-with-visuals.sh)
+
+This script extracts text content from a PDF file and uses the `claude-3-5-sonnet-20241022` model from Anthropic to process the content. You need to provide an API key by setting the `ANTHROPIC_API_KEY` environment variable.
+
+The script uses the following key parameters:
+- **max_tokens**: Currently set to 1024 tokens (can be increased up to 8192 tokens with claude-3-5-sonnet-20241022)
+- Note: The model may stop generating before reaching this limit
+
+```bash
+bash pdf/pdf-to-text-with-visuals.sh pdf/sample_data/sample.pdf
+```
+
+```plain
+What are 5 facts about the human brain?
+
+Here are five interesting facts about the human brain:
+[...]
+```
+
 ## Tools
 
 ### ffmpeg
