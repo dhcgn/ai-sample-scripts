@@ -38,7 +38,7 @@ AUDIO_BASE64=$(base64 < "$AUDIO_FILE" | tr -d '\n')
 
 # Construct the JSON payload
 JSON_PAYLOAD=$(jq -n \
-    --arg model "gpt-4o-audio-preview-2024-10-01" \
+    --arg model "gpt-4o-audio-preview" \
     --arg text "$PROMPT" \
     --arg audio "%%%AUDIO_BASE64%%%" \
     '{
