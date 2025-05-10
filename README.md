@@ -1,3 +1,5 @@
+[![Check Shell Scripts](https://github.com/dhcgn/ai-sample-scripts/actions/workflows/check-shell-scripts.yml/badge.svg)](https://github.com/dhcgn/ai-sample-scripts/actions/workflows/check-shell-scripts.yml)
+
 # ai-sample-acripts
 
 Same sample scripts for different AI Services, written in bash or powershell.
