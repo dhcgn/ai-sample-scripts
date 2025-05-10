@@ -168,16 +168,18 @@ bash moderation/moderation.sh "Your are dump"
 
 ### PDF to Text with Visuals
 
-[pdf/pdf-to-text-with-visuals.sh](pdf/pdf-to-text-with-visuals.sh)
+- [pdf/pdf-to-text-with-visuals-anthropic.sh](pdf/pdf-to-text-with-visuals-anthropic.sh)
+- [pdf/pdf-to-text-with-visuals-mistral.sh](pdf/pdf-to-text-with-visuals-mistral.sh)
 
-This script extracts text content from a PDF file and uses the `claude-3-5-sonnet-20241022` model from Anthropic to process the content. You need to provide an API key by setting the `ANTHROPIC_API_KEY` environment variable.
+
+This script extracts text content from a PDF file and uses the `claude-3-7-sonnet-20250219` model from Anthropic to process the content. You need to provide an API key by setting the `ANTHROPIC_API_KEY` environment variable.
 
 The script uses the following key parameters:
-- **max_tokens**: Currently set to 1024 tokens (can be increased up to 8192 tokens with claude-3-5-sonnet-20241022)
+- **max_tokens**: Currently set to 1024 tokens (can be increased up to 8192 tokens with claude-3-7-sonnet-20250219)
 - Note: The model may stop generating before reaching this limit
 
 ```bash
-bash pdf/pdf-to-text-with-visuals.sh pdf/sample_data/sample.pdf
+bash pdf/pdf-to-text-with-visuals-anthropic.sh pdf/sample_data/sample.pdf
 ```
 
 ```plain
@@ -194,3 +196,22 @@ Here are five interesting facts about the human brain:
 ```bash
 ffmpeg -i input.m4a -ss 00:00:0.0 -t 10 -b:a 96k output.mp3
 ```
+
+# Good Practice: Setting API Keys
+
+To work efficiently with this collection of scripts, set your API keys as environment variables in your shell profile.
+
+1. Open your profile file (e.g., `~/.bashrc` or `~/.bash_profile`) in a text editor:
+   ```bash
+   nano ~/.bashrc
+   ```
+2. Add your API keys (replace `...` with your actual keys):
+   ```bash
+   export MISTRAL_API_KEY=...
+   export ANTHROPIC_API_KEY=...
+   export OPENAI_API_KEY=...
+   ```
+3. Load your profile to apply the changes:
+   ```bash
+   source ~/.bashrc
+   ```

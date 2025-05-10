@@ -39,7 +39,7 @@ PDF_BASE64=$(base64 "$PDF_FILE" | tr -d '\n')
 
 # Create a multiline variable for the text content
 read -r -d '' TEXT_CONTENT << EOM
-Give me the whole content of this file as text, only return the content of this file.
+Give me the whole content of this file as markdown, only return the content of this file as markdown.
 EOM
 
 # Create temporary file for the JSON request body
@@ -48,8 +48,8 @@ TEMP_JSON_FILE=$(mktemp)
 # Create the JSON request body using a here document
 cat > "$TEMP_JSON_FILE" <<EOF
 {
-    "model": "claude-3-5-sonnet-20241022",
-    "max_tokens": 1024,
+    "model": "claude-3-7-sonnet-20250219",
+    "max_tokens": 64000,
     "messages": [{
         "role": "user",
         "content": [{
@@ -83,6 +83,7 @@ response=$(curl -s https://api.anthropic.com/v1/messages \
 
 # Save the response to a file with the timestamp in the logging directory
 echo "$response" | jq > "logging/$timestamp.response.json"
+echo "$response" | jq -r '.content[0].text'> "logging/$timestamp.response.md"
 
 # Save request body in the logging directory (excluding the base64 data for readability)
 cat "$TEMP_JSON_FILE" | jq 'del(.messages[0].content[0].source.data)' > "logging/$timestamp.request.json"
