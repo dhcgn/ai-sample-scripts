@@ -39,7 +39,7 @@ cat > "$TEMP_JSON_FILE" <<EOF
         "type": "document_url",
         "document_url": "data:application/pdf;base64,$PDF_BASE64"
     },
-    "include_image_base64": true
+    "include_image_base64": false
 }
 EOF
 
