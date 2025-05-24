@@ -191,6 +191,27 @@ Here are five interesting facts about the human brain:
 [...]
 ```
 
+## Privatemode AI
+
+On `http://192.168.3.10:9876/` is the image `ghcr.io/edgelesssys/privatemode/privatemode-proxy:latest` running, see more [privatemode-ai\README.md](privatemode-ai\README.md).
+
+### Conversation
+
+```bash
+bash privatemode-ai/conversation.sh "Capitel of France?" http://192.168.3.10:9876
+# Chat completion output: The capital of France is Paris.
+```
+
+### OCR
+
+```bash
+bash privatemode-ai/ocr.sh pdf/sample_data/simple.jpg http://192.168.3.10:9876/
+# Chat completion output: This is a Test
+
+bash privatemode-ai/ocr.sh pdf/sample_data/simple.png http://192.168.3.10:9876/
+# Chat completion output: This is a Test
+```
+
 ## Tools
 
 ### ffmpeg

@@ -1,12 +1,13 @@
 #!/bin/bash
 
 usage() {
-    echo "Usage: $0 <path_to_pdf_file> <api_url>"
-    echo "Example: $0 /path/to/document.pdf http://localhost:8080"
+    echo "Usage: $0 <path_to_file> <api_url>"
+    echo "Example: $0 /path/to/image.jpg http://localhost:8080"
+    echo "Example: $0 /path/to/image.png http://localhost:8080"
     echo ""
     echo "Parameters:"
-    echo "  path_to_pdf_file - Path to the PDF file to process"
-    echo "  api_url         - API URL for the service (e.g., http://localhost:8080)"
+    echo "  path_to_file - Path to the JPG or PNG file to process"
+    echo "  api_url      - API URL for the service (e.g., http://localhost:8080)"
     exit 1
 }
 
@@ -38,12 +39,19 @@ API_URL=$2
 # Remove trailing slash if present
 API_URL=${API_URL%/}
 
-if [[ ! "$PDF_FILE" =~ \.pdf$ ]]; then
-    echo "Error: The file must be a PDF."
+if [[ ! "$PDF_FILE" =~ \.(jpg|jpeg|png)$ ]]; then
+    echo "Error: The file must be a JPG, JPEG, or PNG file."
     usage
 fi
 
-PDF_BASE64=$(base64 "$PDF_FILE" | tr -d '\n')
+# Determine the MIME type based on file extension
+if [[ "$PDF_FILE" =~ \.(jpg|jpeg)$ ]]; then
+    MIME_TYPE="image/jpeg"
+elif [[ "$PDF_FILE" =~ \.png$ ]]; then
+    MIME_TYPE="image/png"
+fi
+
+FILE_BASE64=$(base64 "$PDF_FILE" | tr -d '\n')
 
 # Escape the prompt for JSON
 PROMPT_JSON=$(echo "$PROMPT" | jq -Rs .)
@@ -64,7 +72,7 @@ cat > "$TEMP_JSON_FILE" <<EOF
                 {
                     "type": "image_url",
                     "image_url": {
-                        "url": "data:application/pdf;base64,$PDF_BASE64"
+                        "url": "data:$MIME_TYPE;base64,$FILE_BASE64"
                     }
                 }
             ]
@@ -107,14 +115,14 @@ response=$(curl -s $API_URL/v1/chat/completions \
 end_time=$(date +%s)
 response_time=$((end_time - start_time))
 
-echo "Response from API:"
-echo "$response" 
+# echo "Response from API:"
+# echo "$response" 
 
 echo "$response" | jq > "logging/$timestamp.privatemode_ocr_response.json"
 cat "$TEMP_JSON_FILE" | jq 'del(.messages[0].content[1].image_url.url)' > "logging/$timestamp.privatemode_ocr_request.json"
 
 # Extract and display the content
-content=$(echo "$response" | jq -r '.choices[0].message.content // "No content found"')
+content=$(echo "$response" | jq -r '.choices[0].message.content // "ERROR from script: No content found"')
 echo "Chat completion output: $content"
 echo "Request-to-response time: ${response_time} seconds"
 
