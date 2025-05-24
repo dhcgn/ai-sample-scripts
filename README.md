@@ -191,6 +191,35 @@ Here are five interesting facts about the human brain:
 [...]
 ```
 
+## Privatemode AI
+
+Privatemode AI is a secure generative AI platform developed by Edgeless Systems, designed specifically to address the privacy and data protection concerns organizations face when using AI services. 
+
+Unlike conventional AI solutions, Privatemode AI leverages **confidential computing** and **end-to-end encryption** to ensure that all data—from user input, through processing, to output—remains fully protected and inaccessible to anyone except the user.
+
+### Prerequisites
+
+This example uses a Privatemode AI proxy running on a server at IP address `192.168.3.10`.
+
+The Docker image `ghcr.io/edgelesssys/privatemode/privatemode-proxy:latest` is running on `http://192.168.3.10:9876/`. For more details, see [privatemode-ai/README.md](privatemode-ai/README.md).
+
+### Conversation
+
+```bash
+bash privatemode-ai/conversation.sh "Capitel of France?" http://192.168.3.10:9876
+# Chat completion output: The capital of France is Paris.
+```
+
+### OCR
+
+```bash
+bash privatemode-ai/ocr.sh pdf/sample_data/simple.jpg http://192.168.3.10:9876/
+# Chat completion output: This is a Test
+
+bash privatemode-ai/ocr.sh pdf/sample_data/simple.png http://192.168.3.10:9876/
+# Chat completion output: This is a Test
+```
+
 ## Tools
 
 ### ffmpeg
