@@ -193,7 +193,15 @@ Here are five interesting facts about the human brain:
 
 ## Privatemode AI
 
-On `http://192.168.3.10:9876/` is the image `ghcr.io/edgelesssys/privatemode/privatemode-proxy:latest` running, see more [privatemode-ai\README.md](privatemode-ai\README.md).
+Privatemode AI is a secure generative AI platform developed by Edgeless Systems, designed specifically to address the privacy and data protection concerns organizations face when using AI services. 
+
+Unlike conventional AI solutions, Privatemode AI leverages **confidential computing** and **end-to-end encryption** to ensure that all data—from user input, through processing, to output—remains fully protected and inaccessible to anyone except the user.
+
+### Prerequisites
+
+This example uses a Privatemode AI proxy running on a server at IP address `192.168.3.10`.
+
+The Docker image `ghcr.io/edgelesssys/privatemode/privatemode-proxy:latest` is running on `http://192.168.3.10:9876/`. For more details, see [privatemode-ai/README.md](privatemode-ai/README.md).
 
 ### Conversation
 

@@ -2,6 +2,47 @@
 
 Privatemode AI API Documentation: [https://docs.privatemode.ai/](https://docs.privatemode.ai/).
 
+## Models
+
+> Date: 2025-05-24
+
+```json
+curl http://192.168.3.10:9876/v1/models | jq
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "intfloat/multilingual-e5-large-instruct",
+      "object": "model",
+      "tasks": [
+        "embed"
+      ]
+    },
+    {
+      "id": "google/gemma-3-27b-it",
+      "object": "model",
+      "tasks": [
+        "generate"
+      ]
+    },
+    {
+      "id": "ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4",
+      "object": "model",
+      "tasks": [
+        "generate"
+      ]
+    },
+    {
+      "id": "latest",
+      "object": "model",
+      "tasks": [
+        "generate"
+      ]
+    }
+  ]
+}
+```
+
 ## Docker
 
 ```bash
