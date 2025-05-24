@@ -51,6 +51,8 @@ docker run --rm -p 8080:8080 ghcr.io/edgelesssys/privatemode/privatemode-proxy:l
 
 ### Docker Compose
 
+> Not for production use, because watchtower is configured to update the proxy automatically and this can change behavior without notice.
+
 ```yaml
 version: '3.8'
 
