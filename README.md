@@ -4,6 +4,15 @@
 
 Same sample scripts for different AI Services, written in bash or powershell.
 
+## Setup
+
+```bash
+export OPENAI_API_KEY=...
+export PRIVATE_MODE_API_KEY=...
+export ASSEMBLYAI_API_KEY=...
+export ANTHROPIC_API_KEY=...
+```
+
 ## Multi-Modal
 
 ### Describe Image (gpt-4o-mini with vision)
