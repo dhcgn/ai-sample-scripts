@@ -198,7 +198,7 @@ The script uses the following key parameters:
 - Note: The model may stop generating before reaching this limit
 
 ```bash
-bash pdf/pdf-to-text-with-visuals-anthropic.sh pdf/sample_data/sample.pdf
+bash pdf/pdf-to-text-with-visuals-anthropic.sh test-data/pdf/sample.pdf
 ```
 
 ```plain
@@ -230,11 +230,12 @@ bash privatemode-ai/conversation.sh "Capitel of France?" http://192.168.3.10:987
 ### OCR
 
 ```bash
-bash privatemode-ai/ocr.sh pdf/sample_data/simple.jpg http://192.168.3.10:9876/
+# Chat completion output: This is a Test
+bash privatemode-ai/ocr.sh test-data/pdf/simple.jpg http://192.168.3.10:9876/
 # Chat completion output: This is a Test
 
-bash privatemode-ai/ocr.sh pdf/sample_data/simple.png http://192.168.3.10:9876/
 # Chat completion output: This is a Test
+bash privatemode-ai/ocr.sh test-data/pdf/simple.png http://192.168.3.10:9876/
 ```
 
 ## Tools
