@@ -1,3 +1,5 @@
+[![Check Shell Scripts](https://github.com/dhcgn/ai-sample-scripts/actions/workflows/check-shell-scripts.yml/badge.svg)](https://github.com/dhcgn/ai-sample-scripts/actions/workflows/check-shell-scripts.yml)
+
 # ai-sample-acripts
 
 Same sample scripts for different AI Services, written in bash or powershell.
@@ -168,16 +170,18 @@ bash moderation/moderation.sh "Your are dump"
 
 ### PDF to Text with Visuals
 
-[pdf/pdf-to-text-with-visuals.sh](pdf/pdf-to-text-with-visuals.sh)
+- [pdf/pdf-to-text-with-visuals-anthropic.sh](pdf/pdf-to-text-with-visuals-anthropic.sh)
+- [pdf/pdf-to-text-with-visuals-mistral.sh](pdf/pdf-to-text-with-visuals-mistral.sh)
 
-This script extracts text content from a PDF file and uses the `claude-3-5-sonnet-20241022` model from Anthropic to process the content. You need to provide an API key by setting the `ANTHROPIC_API_KEY` environment variable.
+
+This script extracts text content from a PDF file and uses the `claude-3-7-sonnet-20250219` model from Anthropic to process the content. You need to provide an API key by setting the `ANTHROPIC_API_KEY` environment variable.
 
 The script uses the following key parameters:
-- **max_tokens**: Currently set to 1024 tokens (can be increased up to 8192 tokens with claude-3-5-sonnet-20241022)
+- **max_tokens**: Currently set to 1024 tokens (can be increased up to 8192 tokens with claude-3-7-sonnet-20250219)
 - Note: The model may stop generating before reaching this limit
 
 ```bash
-bash pdf/pdf-to-text-with-visuals.sh pdf/sample_data/sample.pdf
+bash pdf/pdf-to-text-with-visuals-anthropic.sh pdf/sample_data/sample.pdf
 ```
 
 ```plain
@@ -187,6 +191,35 @@ Here are five interesting facts about the human brain:
 [...]
 ```
 
+## Privatemode AI
+
+Privatemode AI is a secure generative AI platform developed by Edgeless Systems, designed specifically to address the privacy and data protection concerns organizations face when using AI services. 
+
+Unlike conventional AI solutions, Privatemode AI leverages **confidential computing** and **end-to-end encryption** to ensure that all data—from user input, through processing, to output—remains fully protected and inaccessible to anyone except the user.
+
+### Prerequisites
+
+This example uses a Privatemode AI proxy running on a server at IP address `192.168.3.10`.
+
+The Docker image `ghcr.io/edgelesssys/privatemode/privatemode-proxy:latest` is running on `http://192.168.3.10:9876/`. For more details, see [privatemode-ai/README.md](privatemode-ai/README.md).
+
+### Conversation
+
+```bash
+bash privatemode-ai/conversation.sh "Capitel of France?" http://192.168.3.10:9876
+# Chat completion output: The capital of France is Paris.
+```
+
+### OCR
+
+```bash
+bash privatemode-ai/ocr.sh pdf/sample_data/simple.jpg http://192.168.3.10:9876/
+# Chat completion output: This is a Test
+
+bash privatemode-ai/ocr.sh pdf/sample_data/simple.png http://192.168.3.10:9876/
+# Chat completion output: This is a Test
+```
+
 ## Tools
 
 ### ffmpeg
@@ -194,3 +227,22 @@ Here are five interesting facts about the human brain:
 ```bash
 ffmpeg -i input.m4a -ss 00:00:0.0 -t 10 -b:a 96k output.mp3
 ```
+
+# Good Practice: Setting API Keys
+
+To work efficiently with this collection of scripts, set your API keys as environment variables in your shell profile.
+
+1. Open your profile file (e.g., `~/.bashrc` or `~/.bash_profile`) in a text editor:
+   ```bash
+   nano ~/.bashrc
+   ```
+2. Add your API keys (replace `...` with your actual keys):
+   ```bash
+   export MISTRAL_API_KEY=...
+   export ANTHROPIC_API_KEY=...
+   export OPENAI_API_KEY=...
+   ```
+3. Load your profile to apply the changes:
+   ```bash
+   source ~/.bashrc
+   ```
