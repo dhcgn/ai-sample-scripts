@@ -31,9 +31,11 @@ PROMPT_JSON=$(echo "$PROMPT" | jq -Rs .)
 
 TEMP_JSON_FILE=$(mktemp)
 
+MODEL_ID="ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4"
+
 cat > "$TEMP_JSON_FILE" <<EOF
 {
-    "model": "ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4",
+    "model": "$MODEL_ID",
     "messages": [
         {
             "role": "user",
@@ -47,6 +49,9 @@ cat > "$TEMP_JSON_FILE" <<EOF
     ]
 }
 EOF
+
+# echo "Generated JSON request:"
+# cat "$TEMP_JSON_FILE"
 
 timestamp=$(date +"%Y%m%d_%H%M%S")
 
@@ -67,8 +72,8 @@ start_time=$(date +%s)
 # Test if the API endpoint is reachable and has the required model
 echo "Testing API endpoint..."
 models_response=$(curl -s "$API_URL/v1/models")
-if ! echo "$models_response" | jq -e '.data[] | select(.id == "ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4")' > /dev/null; then
-    echo "Error: Required model 'ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4' not found in API response"
+if ! echo "$models_response" | jq -e ".data[] | select(.id == \"$MODEL_ID\")" > /dev/null; then
+    echo "Error: Required model '$MODEL_ID' not found in API response"
     echo "Available models:"
     echo "$models_response" | jq -r '.data[].id // "No models found"'
     exit 1

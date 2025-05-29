@@ -108,6 +108,23 @@ bash multi-modal/transcript-gpt-4o-audio-preview.sh file.mp3 "Write me back the 
 bash transcript/whisper.sh file.mp3 "Medical Interview" de
 ```
 
+```bash
+bash transcript/whisper.sh test-data/TheFutureofWomeninFlying.mp3 "Speach of Amelia Earhart" "en"
+```
+
+### Transcript Audio (assemblyai)
+
+```bash
+bash transcript/assemblyai.sh test-data/TheFutureofWomeninFlying.mp3 
+```
+
+### Transcript Audio (gpt-4o-transcribe)
+
+```bash
+bash transcript/openai_transcribe.sh test-data/TheFutureo
+fWomeninFlying.mp3 "Speach of Amelia Earhart" "en"
+```
+
 ### Text-to-Speech
 
 [text-to-speech/text-to-speech.sh](text-to-speech/text-to-speech.sh)
