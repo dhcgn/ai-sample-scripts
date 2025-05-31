@@ -4,13 +4,13 @@ usage() {
     echo "Structured-Output Conversation Script for AI API"
     echo "Passing a lot of text to the AI and getting structured output for different caption suggestions as a json array."
     echo ""
-    echo "Usage: $0 <prompt> <api_url> [json_schema_file]"
-    echo "Example: $0 \"<a lot of text>\" http://localhost:8080 schema.json"
+    echo "Usage: $0 <prompt> <json_schema_file> <api_url>"
+    echo "Example: $0 \"<a lot of text>\" schema.json http://localhost:8080"
     echo ""
     echo "Parameters:"
     echo "  prompt          - Text to send to the AI"
-    echo "  api_url         - API URL for the service (e.g., http://localhost:8080)"
     echo "  json_schema_file- (Optional) Path to a JSON schema file for structured output"
+    echo "  api_url         - API URL for the service (e.g., http://localhost:8080)"
     exit 1
 }
 
@@ -20,13 +20,15 @@ cleanup() {
 
 trap cleanup EXIT
 
+
+# Accepts: <prompt> <json_schema_file> <api_url>
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
     usage
 fi
 
 TEXT=$1
-API_URL=$2
-SCHEMA_FILE=$3
+SCHEMA_FILE=$2
+API_URL=$3
 
 PROMPT=$(cat <<EOF
 You are an AI designed to generate descriptive captions for content.
