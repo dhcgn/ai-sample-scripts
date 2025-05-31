@@ -80,7 +80,7 @@ if ! echo "$models_response" | jq -e ".data[] | select(.id == \"$MODEL_ID\")" > 
 fi
 echo "API endpoint validated - required model found"
 
-response=$(curl -s $API_URL/v1/chat/completions \
+response=$(curl -s "$API_URL"/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d @"$TEMP_JSON_FILE")
 

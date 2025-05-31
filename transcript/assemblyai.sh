@@ -38,7 +38,7 @@ upload_response=$(curl -s --location 'https://api.assemblyai.com/v2/upload' \
     --header "Content-Type: audio/ogg" \
     --data-binary "@$AUDIO_FILE")
 
-upload_url=$(echo $upload_response | jq -r '.upload_url')
+upload_url=$(echo "$upload_response" | jq -r '.upload_url')
 
 if [ -z "$upload_url" ]; then
     echo "Error: Failed to upload the audio file."
@@ -51,7 +51,7 @@ transcription_response=$(curl -s --location 'https://api.assemblyai.com/v2/trans
     --header "Content-Type: application/json" \
     --data "{\"audio_url\": \"$upload_url\", \"language_detection\": true}")
 
-transcription_id=$(echo $transcription_response | jq -r '.id')
+transcription_id=$(echo "$transcription_response" | jq -r '.id')
 
 if [ -z "$transcription_id" ]; then
     echo "Error: Failed to initiate transcription."
@@ -71,7 +71,7 @@ while [ "$status" != "completed" ]; do
     sleep 5
     status_response=$(curl -s --location "https://api.assemblyai.com/v2/transcript/$transcription_id" \
         --header "Authorization: $ASSEMBLYAI_API_KEY")
-    status=$(echo $status_response | jq -r '.status')
+    status=$(echo "$status_response" | jq -r '.status')
 done
 
 # Save the final transcription result

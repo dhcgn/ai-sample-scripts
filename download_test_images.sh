@@ -4,10 +4,10 @@
 mkdir -p "$(dirname "$0")/test-data/images"
 
 # Change to the target directory
-cd "$(dirname "$0")/test-data/images"
+cd "$(dirname "$0")/test-data/images" || exit
 
 # Base URL of the GitHub repository
-base_url="https://github.com/EliSchwartz/imagenet-sample-images/raw/master/"
+
 
 # Get the list of files from the GitHub repository
 file_list=$(curl -s https://api.github.com/repos/EliSchwartz/imagenet-sample-images/contents | grep 'download_url' | cut -d '"' -f 4)

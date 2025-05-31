@@ -86,7 +86,7 @@ echo "$response" | jq > "logging/$timestamp.response.json"
 echo "$response" | jq -r '.content[0].text'> "logging/$timestamp.response.md"
 
 # Save request body in the logging directory (excluding the base64 data for readability)
-cat "$TEMP_JSON_FILE" | jq 'del(.messages[0].content[0].source.data)' > "logging/$timestamp.request.json"
+jq 'del(.messages[0].content[0].source.data)' "$TEMP_JSON_FILE" > "logging/$timestamp.request.json"
 
 # Print the formatted output to the console
 echo "$response" | jq -r '.content[0].text'

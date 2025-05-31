@@ -53,7 +53,7 @@ response=$(curl -s https://api.mistral.ai/v1/ocr \
 
 echo "$response" | jq > "logging/$timestamp.mistral_ocr_response.json"
 echo "$response" | jq -r '.pages[] | "---\nPage: \(.index)\n---\n\(.markdown)\n"' > "logging/$timestamp.mistral_ocr_response.md"
-cat "$TEMP_JSON_FILE" | jq 'del(.document.document_url)' > "logging/$timestamp.mistral_ocr_request.json"
+jq 'del(.document.document_url)' "$TEMP_JSON_FILE" > "logging/$timestamp.mistral_ocr_request.json"
 
 echo "$response" | jq
 

@@ -54,11 +54,13 @@ mkdir -p logging
 echo "$response" > "logging/$timestamp.response.json"
 
 # Save request body in the logging directory
-echo "file=@\"$AUDIO_FILE\"" > "logging/$timestamp.request.json"
-echo "model=\"whisper-1\"" >> "logging/$timestamp.request.json"
-echo "prompt=\"$PROMPT\"" >> "logging/$timestamp.request.json"
-echo "response_format=\"text\"" >> "logging/$timestamp.request.json"
-echo "language=\"$LANGUAGE\"" >> "logging/$timestamp.request.json"
+{
+  echo "file=@\"$AUDIO_FILE\""
+  echo "model=\"whisper-1\""
+  echo "prompt=\"$PROMPT\""
+  echo "response_format=\"text\""
+  echo "language=\"$LANGUAGE\""
+} >> "logging/$timestamp.request.json"
 
 # Print the formatted output to the console
 echo "$response"

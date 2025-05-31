@@ -108,7 +108,7 @@ if ! echo "$models_response" | jq -e '.data[] | select(.id == "google/gemma-3-27
 fi
 echo "API endpoint validated - required model found"
 
-response=$(curl -s $API_URL/v1/chat/completions \
+response=$(curl -s "$API_URL"/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d @"$TEMP_JSON_FILE")
 
@@ -119,7 +119,7 @@ response_time=$((end_time - start_time))
 # echo "$response" 
 
 echo "$response" | jq > "logging/$timestamp.privatemode_ocr_response.json"
-cat "$TEMP_JSON_FILE" | jq 'del(.messages[0].content[1].image_url.url)' > "logging/$timestamp.privatemode_ocr_request.json"
+jq 'del(.messages[0].content[1].image_url.url)' "$TEMP_JSON_FILE" > "logging/$timestamp.privatemode_ocr_request.json"
 
 # Extract and display the content
 content=$(echo "$response" | jq -r '.choices[0].message.content // "ERROR from script: No content found"')
