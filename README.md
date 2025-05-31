@@ -236,6 +236,10 @@ bash privatemode-ai/conversation.sh "Capitel of France?" http://192.168.3.10:987
 # Chat completion output: The capital of France is Paris.
 ```
 
+```bash
+bash privatemode-ai/conversation-structured.sh "Dies ist eine Rechnung über einen Computer" http://localhost:8080 privatemode-ai/caption_list.schema.json 
+```
+
 ### OCR
 
 ```bash
