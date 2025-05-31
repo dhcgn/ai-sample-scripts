@@ -1,10 +1,137 @@
-[![Check Shell Scripts](https://github.com/dhcgn/ai-sample-scripts/actions/workflows/check-shell-scripts.yml/badge.svg)](https://github.com/dhcgn/ai-sample-scripts/actions/workflows/check-shell-scripts.yml)
+# [![Check Shell Scripts](https://github.com/dhcgn/ai-sample-scripts/actions/workflows/check-shell-scripts.yml/badge.svg)](https://github.com/dhcgn/ai-sample-scripts/actions/workflows/check-shell-scripts.yml)
 
-# ai-sample-acripts
+# AI Sample Scripts: Simple, Secure, and Portable
 
-Same sample scripts for different AI Services, written in bash or powershell.
+This repository demonstrates how easy it is to use modern AI services for a variety of tasks. You can use these scripts directly, with no dependencies or imports required. All examples use raw HTTP requests, making them easy to adapt to any scripting or programming language.
 
-## Setup
+## Why This Repo?
+
+* No SDKs or libraries required. All scripts use only standard tools (like `curl`), so you can copy and adapt them anywhere.
+* Multi-language ready. The logic is portable to Bash, PowerShell, Python, or any language that can make HTTP requests.
+* Real-world AI tasks. See how to do image description, audio transcription, text-to-speech, moderation, PDF extraction, and more.
+* Privacy-first. Special focus on [Privatemode AI](#privatemode-ai-confidential-computing), which enables confidential AI computing for sensitive data.
+* Some scripts demonstrate how to return structured data. This is always JSON, which enables developers to easily work with the output in any language.
+
+---
+
+## 🚀 Quick Start
+
+1. **Clone this repo**
+2. **Set your API keys as environment variables** (see [API Key Setup](#api-key-setup))
+3. **Run any script!**
+
+---
+
+## 📂 Folder Overview
+
+```
+├── download_test_images.sh
+├── moderation/                 # Content moderation
+├── multi-modal/                # Image, audio, and multi-modal tasks
+├── pdf/                        # PDF extraction and analysis
+├── privatemode-ai/             # Confidential AI scripts (Privatemode)
+├── test-data/                  # Example input files
+├── text-to-speech/             # Text-to-speech
+└── transcript/                 # Audio transcription
+```
+
+---
+
+## 🛡️ Privatemode AI: Confidential AI Computing
+
+
+**Privatemode AI** (by Edgeless Systems) enables you to use powerful generative AI models with true end-to-end confidentiality. Unlike typical cloud AI, your data is protected by confidential computing and encryption. No one but you can access your data, not even the service provider.
+
+See the [Privatemode AI Documentation](https://docs.privatemode.ai/) for more details.
+
+**Why use Privatemode AI?**
+
+* Confidentiality. Data is protected at all times (in transit, at rest, and during processing).
+* Regulatory compliance. Ideal for sensitive or regulated data.
+* Drop-in replacement. Works just like other AI APIs, but with privacy guarantees.
+
+### Prerequisites
+
+- You need access to a running Privatemode AI proxy (see [privatemode-ai/README.md](privatemode-ai/README.md) for setup)
+- Set your `PRIVATE_MODE_API_KEY` environment variable
+
+### Example: Secure Chat Completion
+
+```bash
+# Ask a question securely
+bash privatemode-ai/conversation.sh "What is the capital of France?" http://192.168.3.10:9876
+# Output: The capital of France is Paris.
+```
+
+### Example: Confidential OCR
+
+```bash
+bash privatemode-ai/ocr.sh test-data/pdf/simple.jpg http://192.168.3.10:9876/
+# Output: This is a Test
+```
+
+### Example: Structured Extraction
+
+```bash
+bash privatemode-ai/conversation-structured.sh "Dies ist eine Rechnung über einen Computer" http://localhost:8080 privatemode-ai/caption_list.schema.json
+```
+
+---
+
+## 🖼️ Multi-Modal AI (OpenAI, etc.)
+
+### Image Description
+
+```bash
+export OPENAI_API_KEY=...
+bash download_test_images.sh
+bash multi-modal/describe-image.sh test-data/images/n01494475_hammerhead.JPEG 'What is in this image? Give a Description and a list of tags.'
+```
+
+### Image Tagging (Structured)
+
+```bash
+bash multi-modal/describe-image-structured.sh test-data/images/n01494475_hammerhead.JPEG
+```
+
+### Audio Transcription
+
+```bash
+bash multi-modal/transcript-gpt-4o-audio-preview.sh test-data/TheFutureofWomeninFlying.mp3 "Transcribe this audio."
+bash transcript/whisper.sh test-data/TheFutureofWomeninFlying.mp3 "Speech of Amelia Earhart" "en"
+bash transcript/assemblyai.sh test-data/TheFutureofWomeninFlying.mp3
+bash transcript/openai_transcribe.sh test-data/TheFutureofWomeninFlying.mp3 "Speech of Amelia Earhart" "en"
+```
+
+### Text-to-Speech
+
+```bash
+bash text-to-speech/text-to-speech.sh "Hello! My name is Franz."
+# Output: Speech file saved to ...
+```
+
+### Moderation
+
+```bash
+bash moderation/moderation.sh "You are dumb"
+# Output: JSON with moderation categories and scores
+```
+
+### PDF to Text with Visuals
+
+```bash
+bash pdf/pdf-to-text-with-visuals-anthropic.sh test-data/pdf/sample.pdf
+bash pdf/pdf-to-text-with-visuals-mistral.sh test-data/pdf/sample.pdf
+```
+
+---
+
+
+## 🔑 API Key Setup
+
+You can easily obtain these API keys from each AI service provider (such as OpenAI, Privatemode AI, AssemblyAI, Anthropic, etc.).
+
+Set your API keys as environment variables in your shell profile for convenience:
 
 ```bash
 export OPENAI_API_KEY=...
@@ -13,267 +140,20 @@ export ASSEMBLYAI_API_KEY=...
 export ANTHROPIC_API_KEY=...
 ```
 
-## Multi-Modal
+For persistent setup, add these lines to your `~/.bashrc` or `~/.bash_profile` and run `source ~/.bashrc`.
 
-### Describe Image (gpt-4o-mini with vision)
+---
 
-[multi-modal/describe-image.sh](multi-modal/describe-image.sh)
+## 🛠️ Tools
 
-```bash
-export OPENAI_API_KEY=$(cat .secrets/OPENAI_API_KEY.txt)
-bash download_test_images.sh
-bash multi-modal/describe-image.sh test-data/images/n01494475_hammerhead.JPEG 'What is in this image? Give a Description and a list of tags.'
-```
-
-```text
-The image features a man standing on a sandy beach holding two fish in his hands. He is shirtless, wearing floral swim shorts and flip-flops. The background includes a view of the ocean under a clear blue sky, with some distant land visible on the horizon.
-
-### Description:
-- Setting: Beach environment
-- Subject: A man holding two fish
-- Clothing: Floral swim shorts, flip-flops, no shirt
-- Mood: Casual and relaxed
-
-### Tags:
-- Beach
-- Fishing
-- Outdoors
-- Summer
-- Catch of the day
-- Marine life
-- Recreation
-- Sports
-- Ocean
-- Coastal
-```
-### Describe Image with structured output (gpt-4o-mini with vision)
-
-[multi-modal/describe-image-structured.sh](multi-modal/describe-image-structured.sh)
-
-```bash
-bash multi-modal/describe-image-structured.sh test-data/images/n01494475_hammerhead.JPEG 
-```
-
-```json
-{
-  "tags": [
-    {
-      "tag": "man",
-      "precision": 0.99
-    },
-    {
-      "tag": "beach",
-      "precision": 0.95
-    },
-    {
-      "tag": "sand",
-      "precision": 0.95
-    },
-    {
-      "tag": "ocean",
-      "precision": 0.95
-    },
-    {
-      "tag": "fish",
-      "precision": 0.98
-    },
-    {
-      "tag": "holding",
-      "precision": 0.97
-    },
-    {
-      "tag": "shorts",
-      "precision": 0.92
-    },
-    {
-      "tag": "sunglasses",
-      "precision": 0.88
-    },
-    {
-      "tag": "hat",
-      "precision": 0.90
-    },
-    {
-      "tag": "daytime",
-      "precision": 0.94
-    }
-  ]
-}
-```
-
-### Transcript Audio (gpt-4o-audio-preview-2024-10-01)
-
-[multi-modal/transcript-gpt-4o-audio-preview.sh](multi-modal/transcript-gpt-4o-audio-preview.sh)
-
-```bash
-bash multi-modal/transcript-gpt-4o-audio-preview.sh file.mp3 "Write me back the ONLY content, as accurately as possible! Do not return anything else!"
-```
-
-### Transcript Audio (whisper-1)
-
-[transcript/whisper.sh](transcript/whisper.sh)
-
-```bash
-bash transcript/whisper.sh file.mp3 "Medical Interview" de
-```
-
-```bash
-bash transcript/whisper.sh test-data/TheFutureofWomeninFlying.mp3 "Speach of Amelia Earhart" "en"
-```
-
-### Transcript Audio (assemblyai)
-
-```bash
-bash transcript/assemblyai.sh test-data/TheFutureofWomeninFlying.mp3 
-```
-
-### Transcript Audio (gpt-4o-transcribe)
-
-```bash
-bash transcript/openai_transcribe.sh test-data/TheFutureo
-fWomeninFlying.mp3 "Speach of Amelia Earhart" "en"
-```
-
-### Text-to-Speech
-
-[text-to-speech/text-to-speech.sh](text-to-speech/text-to-speech.sh)
-
-```bash
-bash text-to-speech/text-to-speech.sh "Hallo! mein Name ist Franz."
-```
-
-```text
-Speech file saved to: /home/user/ai-sample-acripts/speech_20241023_122002.mp3
-```
-
-### Moderation
-
-[moderation/moderation.sh](moderation/moderation.sh)
-
-```bash
-bash moderation/moderation.sh "Your are dump"
-```
-
-```json
-{
-  "id": "modr-a75d9ae4e63e1fcdad3192f54381bf44",
-  "model": "omni-moderation-latest",
-  "results": [
-    {
-      "flagged": true,
-      "categories": {
-        "harassment": true,
-        "harassment/threatening": false,
-        "sexual": false,
-        "hate": false,
-        "hate/threatening": false,
-        "illicit": false,
-        "illicit/violent": false,
-        "self-harm/intent": false,
-        "self-harm/instructions": false,
-        "self-harm": false,
-        "sexual/minors": false,
-        "violence": false,
-        "violence/graphic": false
-      },
-      "category_scores": {
-        "harassment": 0.721970864775024,
-        "harassment/threatening": 0.0008189714985138275,
-        "sexual": 0.00014325365947100792,
-        "hate": 0.00010322310367548195,
-        "hate/threatening": 0.0000015936620247162786,
-        "illicit": 0.0037773915102819354,
-        "illicit/violent": 0.000008092757566536092,
-        "self-harm/intent": 0.00022735757340977802,
-        "self-harm/instructions": 0.00022788290577331583,
-        "self-harm": 0.0005064509108778008,
-        "sexual/minors": 0.0000027535691114583474,
-        "violence": 0.0005600758955536546,
-        "violence/graphic": 0.000007484622751061123
-      },
-      ...
-```
-
-### PDF to Text with Visuals
-
-- [pdf/pdf-to-text-with-visuals-anthropic.sh](pdf/pdf-to-text-with-visuals-anthropic.sh)
-- [pdf/pdf-to-text-with-visuals-mistral.sh](pdf/pdf-to-text-with-visuals-mistral.sh)
-
-
-This script extracts text content from a PDF file and uses the `claude-3-7-sonnet-20250219` model from Anthropic to process the content. You need to provide an API key by setting the `ANTHROPIC_API_KEY` environment variable.
-
-The script uses the following key parameters:
-- **max_tokens**: Currently set to 1024 tokens (can be increased up to 8192 tokens with claude-3-7-sonnet-20250219)
-- Note: The model may stop generating before reaching this limit
-
-```bash
-bash pdf/pdf-to-text-with-visuals-anthropic.sh test-data/pdf/sample.pdf
-```
-
-```plain
-What are 5 facts about the human brain?
-
-Here are five interesting facts about the human brain:
-[...]
-```
-
-## Privatemode AI
-
-Privatemode AI is a secure generative AI platform developed by Edgeless Systems, designed specifically to address the privacy and data protection concerns organizations face when using AI services. 
-
-Unlike conventional AI solutions, Privatemode AI leverages **confidential computing** and **end-to-end encryption** to ensure that all data—from user input, through processing, to output—remains fully protected and inaccessible to anyone except the user.
-
-### Prerequisites
-
-This example uses a Privatemode AI proxy running on a server at IP address `192.168.3.10`.
-
-The Docker image `ghcr.io/edgelesssys/privatemode/privatemode-proxy:latest` is running on `http://192.168.3.10:9876/`. For more details, see [privatemode-ai/README.md](privatemode-ai/README.md).
-
-### Conversation
-
-```bash
-bash privatemode-ai/conversation.sh "Capitel of France?" http://192.168.3.10:9876
-# Chat completion output: The capital of France is Paris.
-```
-
-```bash
-bash privatemode-ai/conversation-structured.sh "Dies ist eine Rechnung über einen Computer" http://localhost:8080 privatemode-ai/caption_list.schema.json 
-```
-
-### OCR
-
-```bash
-# Chat completion output: This is a Test
-bash privatemode-ai/ocr.sh test-data/pdf/simple.jpg http://192.168.3.10:9876/
-# Chat completion output: This is a Test
-
-# Chat completion output: This is a Test
-bash privatemode-ai/ocr.sh test-data/pdf/simple.png http://192.168.3.10:9876/
-```
-
-## Tools
-
-### ffmpeg
+### ffmpeg (for audio conversion)
 
 ```bash
 ffmpeg -i input.m4a -ss 00:00:0.0 -t 10 -b:a 96k output.mp3
 ```
 
-# Good Practice: Setting API Keys
+---
 
-To work efficiently with this collection of scripts, set your API keys as environment variables in your shell profile.
+## 📑 License & Contribution
 
-1. Open your profile file (e.g., `~/.bashrc` or `~/.bash_profile`) in a text editor:
-   ```bash
-   nano ~/.bashrc
-   ```
-2. Add your API keys (replace `...` with your actual keys):
-   ```bash
-   export MISTRAL_API_KEY=...
-   export ANTHROPIC_API_KEY=...
-   export OPENAI_API_KEY=...
-   ```
-3. Load your profile to apply the changes:
-   ```bash
-   source ~/.bashrc
-   ```
+Feel free to use, adapt, and contribute improvements! See individual script headers for details.
