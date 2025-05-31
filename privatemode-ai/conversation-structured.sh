@@ -55,8 +55,8 @@ PROMPT_JSON=$(echo "$PROMPT" | jq -Rs .)
 
 TEMP_JSON_FILE=$(mktemp)
 
-# MODEL_ID="ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4"
-MODEL_ID="google/gemma-3-27b-it"
+MODEL_ID="ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4"
+# MODEL_ID="google/gemma-3-27b-it"
 
 # Prepare response_format if schema file is provided
 RESPONSE_FORMAT=""
