@@ -1,3 +1,12 @@
+### 📚 LLM-Ready Repository Access
+
+For easy AI analysis of this entire repository, visit:
+**https://gitingest.com/dhcgn/ai-sample-scripts**
+
+This provides the complete repository content in an LLM-digestible format, allowing you to easily access all information with your preferred AI assistant.
+
+---
+
 # [![Check Shell Scripts](https://github.com/dhcgn/ai-sample-scripts/actions/workflows/check-shell-scripts.yml/badge.svg)](https://github.com/dhcgn/ai-sample-scripts/actions/workflows/check-shell-scripts.yml)
 
 # AI Sample Scripts: Simple, Secure, and Portable
