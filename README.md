@@ -73,7 +73,7 @@ bash privatemode-ai/ocr.sh test-data/pdf/simple.jpg http://192.168.3.10:9876/
 ### Example: Structured Extraction
 
 ```bash
-bash privatemode-ai/conversation-structured.sh "Dies ist eine Rechnung über einen Computer" http://localhost:8080 privatemode-ai/caption_list.schema.json
+bash privatemode-ai/conversation-structured.sh "Dies ist eine Rechnung über einen Computer" privatemode-ai/caption_list.schema.json http://localhost:8080
 ```
 
 ---
