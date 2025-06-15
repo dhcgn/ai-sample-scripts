@@ -17,12 +17,17 @@
                 "items": {
                     "type": "string"
                 }
+            },
+            "description": {
+                "type": "string",
+                "description": "A short text describing what can be seen in the image."
             }
         },
         "required": [
             "document_type",
             "ocr_text",
-            "tags"
+            "tags",
+            "description"
         ],
         "additionalProperties": false
     },
