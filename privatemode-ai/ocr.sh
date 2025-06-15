@@ -35,25 +35,34 @@ if [ "$#" -ne 2 ]; then
     usage
 fi
 
-PDF_FILE=$1
+
+# Rename PDF_FILE to IMAGE_FILE for clarity
+IMAGE_FILE=$1
 API_URL=$2
+
+# Remove trailing slash if present
 
 # Remove trailing slash if present
 API_URL=${API_URL%/}
 
-if [[ ! "$PDF_FILE" =~ \.(jpg|jpeg|png)$ ]]; then
+
+# Check if the input file is a supported image type
+if [[ ! "$IMAGE_FILE" =~ \.(jpg|jpeg|png)$ ]]; then
     echo "Error: The file must be a JPG, JPEG, or PNG file."
     usage
 fi
 
+
 # Determine the MIME type based on file extension
-if [[ "$PDF_FILE" =~ \.(jpg|jpeg)$ ]]; then
+if [[ "$IMAGE_FILE" =~ \.(jpg|jpeg)$ ]]; then
     MIME_TYPE="image/jpeg"
-elif [[ "$PDF_FILE" =~ \.png$ ]]; then
+elif [[ "$IMAGE_FILE" =~ \.png$ ]]; then
     MIME_TYPE="image/png"
 fi
 
-FILE_BASE64=$(base64 "$PDF_FILE" | tr -d '\n')
+
+# Encode the image file as base64
+FILE_BASE64=$(base64 "$IMAGE_FILE" | tr -d '\n')
 
 # Escape the prompt for JSON
 PROMPT_JSON=$(echo "$PROMPT" | jq -Rs .)
