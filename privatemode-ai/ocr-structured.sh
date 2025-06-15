@@ -14,15 +14,23 @@ usage() {
 MODEL_NAME="leon-se/gemma-3-27b-it-fp8-dynamic"
 
 read -r -d '' PROMPT << EOM
-You job is to extract text from the images I provide you. Extract every bit of the text in the image. Don't say anything just do your job. Text should be same as in the images.
+You are an OCR extraction assistant. Your job is to analyze the provided image and return a structured JSON object that matches the following schema:
 
-Things to avoid:
-- Don't miss anything to extract from the images
+{
+  "document_type": "string (e.g. letter, picture, receipt, screenshot, blank page, or other)",
+  "ocr_text": "string (all text extracted from the image, including every visible character, symbol, or mark)",
+  "tags": ["string", ...] (a list of descriptive tags for the image)
+}
 
-Things to include:
-- Include everything, even anything inside [], (), {} or anything.
-- Include any repetitive things like "..." or anything
-- If you think there is any mistake in image just include it too
+Instructions:
+- Extract every bit of text from the image, including anything inside [], (), {}, or any other symbols.
+- Include all repetitive elements, such as "..." or similar marks.
+- If there are mistakes or unclear text in the image, include them as they appear.
+- Do not omit any content, even if it seems irrelevant.
+- For document_type, choose the best match from: letter, picture, receipt, screenshot, blank page, or other.
+- For tags, provide a list of relevant keywords describing the image (e.g., "handwritten", "invoice", "screenshot", "logo").
+
+Respond ONLY with a valid JSON object matching the schema above. Do not include any extra explanation or commentary.
 EOM
 
 cleanup() {

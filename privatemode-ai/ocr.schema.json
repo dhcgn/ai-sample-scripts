@@ -1,22 +1,30 @@
 {
-  "name": "document",
-  "schema": {
-    "type": "object",
-    "properties": {
-      "document_type": {
-        "type": "string",
-        "description": "The type of document. This could be one of the following: letter, picture, receipt, screenshot, blank page, or other types."
-      },
-      "ocr_text": {
-        "type": "string",
-        "description": "The text extracted from the document using OCR."
-      }
+    "name": "document",
+    "schema": {
+        "type": "object",
+        "properties": {
+            "document_type": {
+                "type": "string",
+                "description": "The type of document. This could be one of the following: letter, picture, receipt, screenshot, blank page, or other types."
+            },
+            "ocr_text": {
+                "type": "string",
+                "description": "The text extracted from the document using OCR."
+            },
+            "tags": {
+                "type": "array",
+                "description": "A list of tags describing this image, to help with categorization. For example, 'photograph of a ...', 'charts', 'letter', 'table', 'handwritten', 'figures', 'visual elements', etc.",
+                "items": {
+                    "type": "string"
+                }
+            }
+        },
+        "required": [
+            "document_type",
+            "ocr_text",
+            "tags"
+        ],
+        "additionalProperties": false
     },
-    "required": [
-      "document_type",
-      "ocr_text"
-    ],
-    "additionalProperties": false
-  },
-  "strict": true
+    "strict": true
 }

@@ -77,6 +77,7 @@ SCRIPTS=(
     "privatemode-ai/conversation.sh 'Hello, how are you?' http://localhost:8080"
     "privatemode-ai/conversation-structured.sh 'Invoice of a NVIDIA GTX 4090 from amazon.de' privatemode-ai/caption_list.schema.json http://localhost:8080"
     "privatemode-ai/ocr.sh test-data/pdf/simple.jpg http://localhost:8080"
+    "privatemode-ai/ocr-structured.sh test-data/pdf/simple.jpg http://localhost:8080"
 )
 
 for entry in "${SCRIPTS[@]}"; do
