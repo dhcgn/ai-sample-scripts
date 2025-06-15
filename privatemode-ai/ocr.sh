@@ -11,6 +11,8 @@ usage() {
     exit 1
 }
 
+MODEL_NAME="leon-se/gemma-3-27b-it-fp8-dynamic"
+
 read -r -d '' PROMPT << EOM
 You job is to extract text from the images I provide you. Extract every bit of the text in the image. Don't say anything just do your job. Text should be same as in the images.
 
@@ -60,7 +62,7 @@ TEMP_JSON_FILE=$(mktemp)
 
 cat > "$TEMP_JSON_FILE" <<EOF
 {
-    "model": "google/gemma-3-27b-it",
+    "model": "$MODEL_NAME",
     "messages": [
         {
             "role": "user",
@@ -100,8 +102,8 @@ start_time=$(date +%s)
 # Test if the API endpoint is reachable and has the required model
 echo "Testing API endpoint..."
 models_response=$(curl -s "$API_URL/v1/models")
-if ! echo "$models_response" | jq -e '.data[] | select(.id == "google/gemma-3-27b-it")' > /dev/null; then
-    echo "Error: Required model 'google/gemma-3-27b-it' not found in API response"
+if ! echo "$models_response" | jq -e ".data[] | select(.id == \"$MODEL_NAME\")" > /dev/null; then
+    echo "Error: Required model '$MODEL_NAME' not found in API response"
     echo "Available models:"
     echo "$models_response" | jq -r '.data[].id // "No models found"'
     exit 1
