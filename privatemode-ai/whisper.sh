@@ -3,12 +3,6 @@ MODEL_NAME="openai/whisper-large-v3"
 
 # Documentation: https://docs.privatemode.ai/api/speech-to-text
 
-if [ -z "$OPENAI_API_KEY" ]; then
-    echo "Error: OPENAI_API_KEY is not set." >&2
-    exit 1
-fi
-
-
 # Function to display usage information
 usage() {
     echo "Usage: $0 <path_to_audio_file> <prompt> <language> <api_url>"
@@ -20,15 +14,13 @@ usage() {
     exit 1
 }
 
-# Check if ffprobe and ffmpeg are available
-if ! command -v ffprobe >/dev/null 2>&1; then
-    echo "Error: ffprobe is not installed or not in PATH. Please install FFmpeg." >&2
-    exit 1
-fi
-if ! command -v ffmpeg >/dev/null 2>&1; then
-    echo "Error: ffmpeg is not installed or not in PATH. Please install FFmpeg." >&2
-    exit 1
-fi
+# Check for required commands
+for cmd in ffprobe ffmpeg jq curl; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        echo "Error: Required command '$cmd' is not installed." >&2
+        exit 1
+    fi
+doneff
 
 # Check if the correct number of arguments is provided
 if [ "$#" -ne 4 ]; then
@@ -73,8 +65,6 @@ echo "Using language: $LANGUAGE"
 
 # Create a timestamp
 timestamp=$(date +"%Y%m%d_%H%M%S")
-
-
 
 # Test Endpoint
 echo "Testing API endpoint..."
