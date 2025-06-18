@@ -88,12 +88,22 @@ fi
 echo "API endpoint validated - required model found"
 
 
-# Make the API call and capture both the response body and status code
-curl_response=$(curl -s -w "\n%{http_code}" --location "$API_URL/v1/audio/transcriptions" \
-    --form "file=@\"$AUDIO_FILE\"" \
-    --form "model=\"$MODEL_NAME\"" \
-    --form "prompt=\"$PROMPT\"" \
-    --form "language=\"$LANGUAGE\"")
+
+# Prepare the curl command as a multiline string using a here-document with trailing backslashes
+read -r -d '' curl_cmd <<'EOF'
+curl -s -w "\n%{http_code}" --location "$API_URL/v1/audio/transcriptions" \
+  --form "file=@$AUDIO_FILE" \
+  --form "model=$MODEL_NAME" \
+  --form "prompt=$PROMPT" \
+  --form "language=$LANGUAGE"
+EOF
+
+
+# Log the curl command with variables expanded, for reproducibility
+eval echo "$curl_cmd" > "logging/$timestamp.privatemode_whisper_request.json"
+
+# Execute the curl command
+curl_response=$(eval "$curl_cmd")
 
 # Extract the status code (last line) and body (all but last line)
 status_code=$(echo "$curl_response" | tail -n1)
@@ -101,13 +111,6 @@ response_body=$(echo "$curl_response" | sed '$d')
 
 # Ensure the logging directory exists
 mkdir -p logging
-# Save request body in the logging directory
-{
-  echo "file=@\"$AUDIO_FILE\""
-  echo "model=\"$MODEL_NAME\""
-  echo "prompt=\"$PROMPT\""
-  echo "language=\"$LANGUAGE\""
-} >> "logging/$timestamp.privatemode_whisper_request.json"
 
 # Output status code and body
 echo "Status code: $status_code"
