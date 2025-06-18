@@ -160,7 +160,15 @@ main() {
     # Split audio into chunks
     echo "Splitting audio file into chunks..."
     mapfile -t chunk_files < <(split_audio_chunks "$AUDIO_FILE" "$CHUNK_LENGTH" "$OVERLAP")
-    echo "Total chunks: ${#chunk_files[@]}"
+    chunk_count=${#chunk_files[@]}
+    echo "Total chunks: $chunk_count"
+    # Enforce rate limit: max 19 requests per minute
+    if [ "$chunk_count" -gt 19 ]; then
+        echo "Error: The rate limit is 20 requests per minute. Only 19 splits are allowed per run. Your file would require $chunk_count splits. Please use a shorter file or increase chunk size." >&2
+        # Clean up any created chunk files
+        cleanup_chunks "${chunk_files[@]}"
+        exit 1
+    fi
 
     # Transcribe each chunk and concatenate results
     local all_text=""
