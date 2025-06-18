@@ -176,9 +176,21 @@ main() {
     cleanup_chunks "${chunk_files[@]}"
 
     # Save and print the concatenated result
-    echo -e "$all_text" > "logging/${timestamp}.privatemode_whisper_full_transcript.txt"
+    transcript_file="logging/${timestamp}.privatemode_whisper_full_transcript.txt"
+    echo -e "$all_text" > "$transcript_file"
     echo "\n--- Full Transcript ---"
     echo -e "$all_text"
+
+    # Call conversation.sh to get a consolidated summary/response from the transcript
+    echo "\n--- Requesting consolidated AI response from conversation.sh ---"
+    # Add a fixed prompt for merging chunked transcription
+    merge_prompt="Combine this chunked transcription with overlappoing on one transcript. Return allways and only the transcript. Nothing else."
+    prompt_content="$merge_prompt\n\n$(cat "$transcript_file")"
+    # If the prompt is too large for a single argument, use a temporary file and pass its content
+    temp_prompt_file=$(mktemp)
+    printf '%s' "$prompt_content" > "$temp_prompt_file"
+    "$(dirname "$0")/conversation.sh" "$(cat "$temp_prompt_file")" "$API_URL"
+    rm -f "$temp_prompt_file"
 }
 
 main "$@"
