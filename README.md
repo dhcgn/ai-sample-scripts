@@ -79,6 +79,13 @@ bash privatemode-ai/ocr.sh test-data/pdf/simple.jpg http://192.168.3.10:9876/
 # Output: This is a Test
 ```
 
+
+### Example: Audio Transcription (Privatemode Whisper)
+
+```bash
+bash privatemode-ai/whisper.sh  test-data/audio/MLKDream_64kb.mp3 "Speech" "en" http://192.168.3.10:9876
+```
+
 ### Example: Structured Extraction
 
 ```bash
