@@ -44,7 +44,7 @@ DURATION=$(ffprobe -v error -show_entries format=duration -of default=noprint_wr
 DURATION_INT=${DURATION%.*}
 if [ "$DURATION_INT" -gt 29 ]; then
     echo "Warning: The audio file is longer than 29 seconds. Trimming to 29 seconds."
-    TMP_AUDIO_FILE=$(mktemp --suffix=.${AUDIO_FILE##*.})
+    TMP_AUDIO_FILE=$(mktemp --suffix=."${AUDIO_FILE##*.}")
     ffmpeg -y -i "$AUDIO_FILE" -t 29 "$TMP_AUDIO_FILE" < /dev/null
     AUDIO_FILE="$TMP_AUDIO_FILE"
     # Clean up temp file on exit
