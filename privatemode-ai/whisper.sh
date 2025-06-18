@@ -20,7 +20,7 @@ for cmd in ffprobe ffmpeg jq curl; do
         echo "Error: Required command '$cmd' is not installed." >&2
         exit 1
     fi
-doneff
+done
 
 # Check if the correct number of arguments is provided
 if [ "$#" -ne 4 ]; then

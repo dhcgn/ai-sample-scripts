@@ -86,7 +86,7 @@ split_audio_chunks() {
     local chunk_files=()
     while [ "$start" -lt "$duration_int" ]; do
         local chunk_file
-        chunk_file=$(mktemp --suffix=.${input_file##*.})
+        chunk_file=$(mktemp --suffix=."${input_file##*.}")
         ffmpeg -y -hide_banner -loglevel error -ss "$start" -t "$chunk_length" -i "$input_file" "$chunk_file"
         chunk_files+=("$chunk_file")
         echo "$chunk_file"
@@ -186,11 +186,11 @@ main() {
     # Save and print the concatenated result
     transcript_file="logging/${timestamp}.privatemode_whisper_full_transcript.txt"
     echo -e "$all_text" > "$transcript_file"
-    echo "\n--- Full Transcript ---"
+    printf "\n--- Full Transcript ---\n"
     echo -e "$all_text"
 
     # Call conversation.sh to get a consolidated summary/response from the transcript
-    echo "\n--- Requesting consolidated AI response from conversation.sh ---"
+    printf "\n--- Requesting consolidated AI response from conversation.sh ---\n"
     # Add a fixed prompt for merging chunked transcription
     merge_prompt="Combine this chunked transcription with overlappoing on one transcript. Return allways and only the transcript. Nothing else."
     prompt_content="$merge_prompt\n\n$(cat "$transcript_file")"
