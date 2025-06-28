@@ -84,7 +84,7 @@ bash privatemode-ai/ocr.sh test-data/pdf/simple.jpg http://192.168.3.10:9876/
 
 ```bash
 bash privatemode-ai/whisper.sh  test-data/audio/MLKDream_64kb.mp3 "Speech" "en" http://192.168.3.10:9876
-bash privatemode-ai/whisper-long-file.sh  test-data/audio/MLKDream_64kb_first_90s.mp3 "Speeach" "en" http://192.168.3.10:9876 
+bash privatemode-ai/whisper-long-file.sh  test-data/audio/MLKDream_64kb_first_90s.mp3 "Speech" "en" http://192.168.3.10:9876 
 ```
 
 ### Example: Structured Extraction
