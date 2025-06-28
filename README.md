@@ -79,11 +79,32 @@ bash privatemode-ai/ocr.sh test-data/pdf/simple.jpg http://192.168.3.10:9876/
 # Output: This is a Test
 ```
 
+
+### Example: Audio Transcription (Privatemode Whisper)
+
+```bash
+bash privatemode-ai/whisper.sh  test-data/audio/MLKDream_64kb.mp3 "Speech" "en" http://192.168.3.10:9876
+bash privatemode-ai/whisper-long-file.sh  test-data/audio/MLKDream_64kb_first_90s.mp3 "Speech" "en" http://192.168.3.10:9876 
+```
+
+
 ### Example: Structured Extraction
 
 ```bash
 bash privatemode-ai/conversation-structured.sh "Dies ist eine Rechnung über einen Computer" privatemode-ai/caption_list.schema.json http://localhost:8080
 ```
+
+
+### Example: Embedding (Privatemode)
+
+```bash
+# Embed each line of a text file as a vector using Privatemode AI
+bash privatemode-ai/create-embedding.sh test-data/texts.txt test-data/texts-vectors.tsv http://localhost:8080
+```
+
+- Each line in the input file is truncated to 512 characters and embedded as a vector.
+- The resulting vectors are saved as tab-separated values in the output TSV file.
+- All requests and responses are logged in the `logging/` directory.
 
 ---
 

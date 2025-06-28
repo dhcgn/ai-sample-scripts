@@ -1,0 +1,50 @@
+Informatik ist die Wissenschaft von der systematischen Darstellung, Speicherung, Verarbeitung und Übertragung von Informationen, wobei in der Regel die automatische Verarbeitung mit Computern betrachtet wird.
+Sie ist sowohl Grundlagen- und Formalwissenschaft als auch Ingenieurdisziplin.
+Das Wort Informatik entstand durch das Anhängen des Suffix -ik an den Wortstamm von Information.
+Karl Steinbuch prägte die Bezeichnung Informatik zusammen mit Helmut Gröttrup und verwendete sie in seiner ersten Publikation „Informatik: Automatische Informationsverarbeitung“ im April 1957.
+Um die Bedeutung der Automation oder Mathematik für die Informatik zu betonen, wird Informatik manchmal auch als Kofferwort aus Information und Automatik oder Information und Mathematik ausgegeben.
+Nach einem internationalen Kolloquium in Dresden am 26. Februar 1968 setzte sich Informatik als Bezeichnung für die Wissenschaft nach französischem und russischem Vorbild auch im deutschen Sprachraum durch.
+Im Juli desselben Jahres wurde der Begriff Informatik erstmals als deutscher Name für ein neu einzurichtendes Studienfach in einer Berliner Rede des Bundesministers Gerhard Stoltenberg verwendet.
+Während im englischen Sprachraum die Bezeichnung Computer Science üblich ist, konnte sich die deutsche Entsprechung Computerwissenschaften nicht durchsetzen.
+Jedoch wird der Ausdruck Informatics im Englischen für bestimmte Teile der Angewandten Informatik verwendet.
+Bei Übersetzungen ins Englische wird im deutschen Sprachraum teilweise die Bezeichnung Informatics gegenüber Computer Science bevorzugt.
+Bereits Gottfried Wilhelm Leibniz hatte sich mit binären Zahlendarstellungen beschäftigt.
+Gemeinsam mit der Booleschen Algebra, die zuerst 1847 von George Boole ausgearbeitet wurde, bilden sie die wichtigsten mathematischen Grundlagen späterer Rechensysteme.
+Die Anfänge der modernen Informatik gehen in Deutschland bis ins Jahr 1952 zurück, als im Juli an der RWTH Aachen die erste deutsche Informatik-Tagung zum Thema programmgesteuerte Rechengeräte und Integrieranlagen mit Konrad Zuse und Heinz Nixdorf stattfand.
+1953 folgte ein Kolloquium zu Rechenanlagen in Göttingen, nachdem dort der erste deutsche Elektronenrechner, die G1, in Betrieb ging.
+Die TU München entwickelte unter Leitung von Hans Piloty und Robert Sauer ebenfalls einen Röhrenrechner, die PERM, die 1956 in Betrieb ging, und lud 1954 zu einem Rundtischgespräch ein.
+Am Institut für praktische Mathematik der Technischen Hochschule Darmstadt, das der Mathematiker Alwin Walther seit 1928 aufbaute, konnten sich dann 1956 die ersten Studenten am Darmstädter Elektronischen Rechenautomaten mit den Problemen von Rechenautomaten befassen.
+Zeitgleich wurden an der TH Darmstadt die ersten Programmiervorlesungen und Praktika angeboten.
+Aufgrund des Renommees, das die TH Darmstadt zu dem Zeitpunkt in der Rechenautomatenforschung hatte, fand ein Kongress zum Fachgebiet Informatik im Oktober 1955 an der TH Darmstadt statt.
+Dieser Kongress gilt als Geburtsstätte der Programmiersprache ALGOL.
+Der Bundesausschuss für wissenschaftliche Forschung verabschiedete am 26. April 1967 das Programm für die Förderung der Forschung und Entwicklung auf dem Gebiet der Datenverarbeitung für öffentliche Aufgaben.
+Für die Umsetzung war der Fachbeirat für Datenverarbeitung zuständig, der überwiegend aus Vertretern der Hochschulen und außeruniversitären Forschungseinrichtungen bestand.
+Auf der siebten Sitzung des Fachbeirates am 15. November 1967 signalisierte Karl Ganzhorn die Probleme der Industrie, Fachpersonal zu finden.
+Der Direktor des Instituts für Nachrichtenverarbeitung an der TH Darmstadt, Robert Piloty, wies darauf hin, dass die deutschen Hochschulen dafür zuständig seien, qualifiziertes Personal auszubilden.
+Daraufhin bildete sich der Ausschuss „DV-Lehrstühle und -Ausbildung“.
+Den Vorsitz übernahm Piloty.
+Der Ausschuss formulierte Empfehlungen für die Ausbildung von Informatikern, welche die Einrichtung eines Studiengangs der Informatik an mehreren Universitäten und Technischen Hochschulen vorsahen.
+1967 bot die TU München mit dem Studienzweig Informationsverarbeitung den ersten Informatikstudiengang in Deutschland im Rahmen des Mathematikstudiums an.
+1968 führte die TH Darmstadt einen Studienplan „Informatik“ an der Fakultät für Elektrotechnik ein.
+1969 folgte der Studiengang „Datentechnik (Technische Informatik)“ des Fachbereiches Regulierungs- und Datentechnik.
+1970 kam ein Mathematikstudiengang hinzu, der mit dem Grad „Diplomingenieur im Fach Mathematik mit Schwerpunkt Informatik“ abschloss.
+Am 1. September 1969 begann die Technische Universität Dresden als erste Hochschule der DDR mit der Ausbildung von Dipl.-Ing. für Informationsverarbeitung.
+Ebenfalls 1969 begann die Ingenieurschule Furtwangen mit der Ausbildung, hier noch Informatorik genannt.
+Im Wintersemester 1969/70 bot die Universität Karlsruhe als erste bundesdeutsche Hochschule ein Informatikstudium an.
+Dieses Studium schloss mit dem Grad „Diplom-Informatiker“ ab.
+Die Johannes Kepler Universität Linz startete im Wintersemester 1969/70 als erste österreichische Universität mit der Studienrichtung Informatik.
+Im Wintersemester 1970/71 folgte die Technische Universität Wien.
+Wenige Jahre darauf gründeten sich die ersten Fakultäten für Informatik.
+Nach Babbage veröffentlichte Percy Ludgate 1909 den zweiten der beiden einzigen Entwürfe für mechanische Rechenmaschinen in der Geschichte.
+Im Jahr 1914 veröffentlichte der spanische Ingenieur Leonardo Torres Quevedo seine „Essays on Automatics“.
+Er entwarf eine theoretische elektromechanische Rechenmaschine, die durch ein Nur-Lese-Programm gesteuert werden sollte.
+Das Papier führte auch die Idee der Gleitkommaarithmetik ein.
+Anlässlich des 100. Jahrestages der Erfindung des Arithmometers präsentierte Torres 1920 in Paris das Elektromechanische Arithmometer.
+Der Prototyp demonstrierte die Machbarkeit einer elektromechanischen Rechenmaschine, auf der Befehle eingegeben und Ergebnisse automatisch ausgedruckt werden konnten.
+1937 veröffentlichte der Brite Alan Turing seine Arbeit „On Computable Numbers with an application to the Entscheidungsproblem“.
+Darin stellte er die nach ihm benannte Turingmaschine vor.
+Dieses mathematische Maschinenmodell ist bis heute für die Theoretische Informatik von größter Bedeutung.
+1937 überzeugte Howard Aiken IBM davon, seine riesige programmierbare Rechenmaschine ASCC / Harvard Mark I zu entwickeln.
+Als die Maschine fertig war, wurde sie von einigen als „Babbages wahr gewordener Traum“ gefeiert.
+In englischsprachigen Ländern wird die Einzelwissenschaft als computer science bezeichnet.
+Der erste universitäre Abschluss war das Diploma in Numerical Analysis and Automatic
